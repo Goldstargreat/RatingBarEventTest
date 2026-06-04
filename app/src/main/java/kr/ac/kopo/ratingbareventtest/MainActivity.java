@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity
 {
+    // 전역 변수 선언
     RatingBar rating1, rating2, rating3;
     Button btnInc, btnDec;
 
@@ -30,31 +31,25 @@ public class MainActivity extends AppCompatActivity
             return insets;
         });
 
+        // 1. 뷰 바인딩 (앞에 'Button' 타입을 빼고 전역 변수에 그대로 대입)
         rating1 = findViewById(R.id.rating1);
         rating2 = findViewById(R.id.rating2);
         rating3 = findViewById(R.id.rating3);
-        Button btnInc = findViewById(R.id.btn_inc);
-        Button btnDec = findViewById(R.id.btn_dec);
+        btnInc = findViewById(R.id.btn_inc);
+        btnDec = findViewById(R.id.btn_dec);
 
-        btnInc.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                rating1.setRating(rating1.getRating() + rating1.getStepSize());
-                rating2.setRating(rating2.getRating() + rating2.getStepSize());
-                rating3.setRating(rating3.getRating() + rating3.getStepSize());
-            }
+        // 2. 증가 버튼 이벤트 설정 (람다식으로 깔끔하게 처리)
+        btnInc.setOnClickListener(v -> {
+            rating1.setRating(rating1.getRating() + rating1.getStepSize());
+            rating2.setRating(rating2.getRating() + rating2.getStepSize());
+            rating3.setRating(rating3.getRating() + rating3.getStepSize());
         });
-        btnInc.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                rating1.setRating(rating1.getRating() - rating1.getStepSize());
-                rating2.setRating(rating2.getRating() - rating2.getStepSize());
-                rating3.setRating(rating3.getRating() - rating3.getStepSize());
-            }
+
+        // 3. 감소 버튼 이벤트 설정 (btnDec로 올바르게 수정)
+        btnDec.setOnClickListener(v -> {
+            rating1.setRating(rating1.getRating() - rating1.getStepSize());
+            rating2.setRating(rating2.getRating() - rating2.getStepSize());
+            rating3.setRating(rating3.getRating() - rating3.getStepSize());
         });
     }
 }
