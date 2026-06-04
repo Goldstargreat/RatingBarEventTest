@@ -31,25 +31,35 @@ public class MainActivity extends AppCompatActivity
             return insets;
         });
 
-        // 1. 뷰 바인딩 (앞에 'Button' 타입을 빼고 전역 변수에 그대로 대입)
+        // 1. 중복 선언 해결 (앞에 Button을 빼고 전역 변수에 할당)
         rating1 = findViewById(R.id.rating1);
         rating2 = findViewById(R.id.rating2);
         rating3 = findViewById(R.id.rating3);
         btnInc = findViewById(R.id.btn_inc);
         btnDec = findViewById(R.id.btn_dec);
 
-        // 2. 증가 버튼 이벤트 설정 (람다식으로 깔끔하게 처리)
-        btnInc.setOnClickListener(v -> {
-            rating1.setRating(rating1.getRating() + rating1.getStepSize());
-            rating2.setRating(rating2.getRating() + rating2.getStepSize());
-            rating3.setRating(rating3.getRating() + rating3.getStepSize());
+        // 2. 증가 버튼 이벤트 (원래 작성하시던 익명 클래스 방식)
+        btnInc.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                rating1.setRating(rating1.getRating() + rating1.getStepSize());
+                rating2.setRating(rating2.getRating() + rating2.getStepSize());
+                rating3.setRating(rating3.getRating() + rating3.getStepSize());
+            }
         });
 
-        // 3. 감소 버튼 이벤트 설정 (btnDec로 올바르게 수정)
-        btnDec.setOnClickListener(v -> {
-            rating1.setRating(rating1.getRating() - rating1.getStepSize());
-            rating2.setRating(rating2.getRating() - rating2.getStepSize());
-            rating3.setRating(rating3.getRating() - rating3.getStepSize());
+        // 3. 감소 버튼 이벤트 (btnDec로 올바르게 연결)
+        btnDec.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                rating1.setRating(rating1.getRating() - rating1.getStepSize());
+                rating2.setRating(rating2.getRating() - rating2.getStepSize());
+                rating3.setRating(rating3.getRating() - rating3.getStepSize());
+            }
         });
     }
 }
