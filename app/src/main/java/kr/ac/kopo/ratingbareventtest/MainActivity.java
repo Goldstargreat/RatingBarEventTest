@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity
         btnInc = findViewById(R.id.btn_inc);
         btnDec = findViewById(R.id.btn_dec);
 
-        // 2. 증가 버튼 이벤트 (원래 작성하시던 익명 클래스 방식)
+        // 2. 증가 버튼 이벤트
         btnInc.setOnClickListener(new View.OnClickListener()
         {
             @Override
